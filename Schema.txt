@@ -1,0 +1,48 @@
+CREATE DATABASE ECommerce;
+
+CREATE TABLE Customers(
+  CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+  CustomerName VARCHAR(255),
+  MailID VARCHAR(255),
+  Address VARCHAR(255)
+ );
+ 
+ INSERT INTO Customers(CustomerName,
+                       MailID, Address)
+ VALUES
+ ('Dinesh', 'Smilydinesh011@gmail.com', 'Kanchipuram'),
+ ('Praba', 'Prabakaran2000@gmail.com', 'Chengalpattu'),
+ ('Hari', 'Harikrishnan2004@gmail.com', 'Chennai'),
+ ('Santhosh', 'Santhosh2008@gmail.com', 'Erode'),
+ ('Vicky', 'Vickyv2005@gmail.com', 'Kanchipuram');
+
+CREATE TABLE Orders(
+  OrderID INT AUTO_INCREMENT PRIMARY KEY,
+  CustomerID INT,
+  OrderDate VARCHAR(255),
+  TotalAmount VARCHAR(255),
+  FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+ );
+ 
+ INSERT INTO Orders(CustomerID, OrderDate, TotalAmount)
+ VALUES
+(001, '12-11-2024', 250),
+(002, '14-10-2024', 200),
+(003, '16-10-2024', 300),
+(004, '18-11-2024', 150),
+(005, '20-11-2024', 350);
+
+CREATE TABLE Products(
+  ProductID INT AUTO_INCREMENT PRIMARY KEY,
+  ProductName VARCHAR(255),
+  ProductPrice VARCHAR(255),
+  ProductDes VARCHAR(255)
+);
+
+INSERT INTO Products(ProductName, ProductPrice, ProductDes)
+VALUES
+('Biscuit', 20, 'Eating'),
+('Soap', 35, 'Bathing'),
+('Sugar', 80, 'Cooking'),
+('CricketBat', 600, 'Playing'),
+('Boost', 250, 'Cooking')

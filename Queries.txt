@@ -1,0 +1,60 @@
+Retrieve all customers who have placed an order in the last 30 days.
+
+    SELECT DISTINCT c.CustomerID, c.CustomerName, c.MailID, c.Address
+    FROM Customers c
+    JOIN Orders o ON c.CustomerID = o.CustomerID
+    WHERE STR_TO_DATE(o.OrderDate, '%d-%m-%Y') >= CURDATE() - INTERVAL 30 DAY;
+
+Get the total amount of all orders placed by each customer.
+
+    SELECT CustomerID, SUM(TotalAmount) AS TotalAmountByCustomer
+    FROM Orders
+    GROUP BY CustomerID;
+
+Update the price of Product C to 45.00.
+
+    UPDATE Products
+    SET ProductPrice = 45
+    WHERE ProductName = 'Sugar';
+    SELECT * FROM Products;
+
+Add a new column discount to the products table.    
+    
+    ALTER TABLE Products
+    ADD COLUMN ProductDiscount DECIMAL (5, 2) DEFAULT 10.00;
+    SELECT * FROM Products;
+
+Retrieve the top 3 products with the highest price.
+
+    SELECT ProductID, ProductName, ProductPrice  
+    FROM Products
+    ORDER BY ProductPrice DESC
+    LIMIT 3;
+    SELECT * FROM Products;
+
+Get the names of customers who have ordered Product A.
+
+    SELECT DISTINCT c.CustomerName
+    FROM Customers c
+    JOIN Orders o ON c.CustomerID = o.CustomerID
+    JOIN Products p ON o.CustomerID = p.ProductID
+    WHERE p.ProductName = 'Biscuit';
+
+
+Join the orders and customers tables to retrieve the customer's name and order date for each order. 
+  
+    SELECT Customers.CustomerName, Orders.OrderDate
+    FROM Customers
+    JOIN Orders
+    ON Customers.CustomerID = Orders.OrderID;
+
+Retrieve the orders with a total amount greater than 150.00.
+
+    SELECT *
+    FROM Orders
+    WHERE TotalAmount > 150;
+
+Retrieve the average total of all orders.
+
+    SELECT AVG(TotalAmount) AS AverageOrderTotal
+    FROM Orders;
